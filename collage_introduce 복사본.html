@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>우리는 대학생 - 특성화고재직자전형</title>
+  <link rel="shortcut icon" href="./images/3.png" type="image/x-icon">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+   /* 대학 목록 컨테이너 */
+#university-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 40px;
+  justify-content: center;
+}
+/* 각 대학 항목 박스 */
+.html-css._html {
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  width: 200px;
+  text-align: center; /* 중앙 정렬로 변경 */
+  transition: box-shadow 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 중앙 정렬 유지 */
+  height: 570px;
+}
+.html-css._html:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.html-css__thumb {
+  margin-bottom: 10px;
+}
+.html-css__logo {
+  width: 100%;
+  height: auto;
+  max-height: 150px;
+  object-fit: contain;
+}
+/* 학과 목록 스타일 */
+.majors-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 중앙 정렬 */
+  
+}
+.majors-list li {
+  width: 100%;
+  text-align: center;
+  padding: 5px 0;
+  display: flex;
+  justify-content: center; /* 중앙 정렬 */
+}
+
+/* 검색 입력란 스타일 */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+.search-bar input {
+  width: 300px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.html-css._html p {
+  font-size: 20px;
+  width: auto; /* 너비 자동 조절 */
+  white-space: nowrap; /* 줄 바꿈 방지 */
+  margin-bottom: 10px; /* 추가된 스타일: 아래 간격 조정 */
+}
+
+
+    
+  </style>
+</head>
+<body>
+  <section class="intro">
+    <div class="intro__dark">
+      <div class="intro__type">
+        <div><span aria-hidden="true">우리는 대학생 - </span> 재직자전형</div>
+        <div>대학사이트<span class="underscore">!</span></div>
+      </div>
+    </div>
+    <div class="intro__tilt"></div>
+    <div class="intro__tilt--flip"></div>
+  </section>
+
+  <header class="header">
+    <h1>
+      <a class="header__homelink" href="#">
+        <img class="header__logo" src="./images/3.png" alt="홈으로">
+      </a>
+    </h1>
+    <input class="header__menu-btn" type="checkbox">
+    <nav class="header__nav">
+      <ul>
+        <li class="header__nav-item">
+          <a href="./index.html">재직자전형</a>
+        </li>
+        <li class="header__nav-item">
+          <a href="./collage_introduce.html">대학소개</a>
+        </li>
+        <li class="header__nav-item">
+          <a href="./college_competition.html">경쟁률</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="html" class="section">
+    <header class="section__header">
+      <h1 class="section__title">대학 목록</h1>
+    </header>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="대학 이름을 검색하세요...">
+    </div>
+    <div id="university-list"></div>
+  </section>
+
+  <script>
+    const universities = [
+      { name: "고려대학교", logo: "./images/고려대로고.png", url: "https://oku.korea.ac.kr/oku/index.do", majors: ["학생부종합(11명)"]},
+      { name: "가천대학교", logo: "./images/가천대로고.jpg", url: "https://admission.gachon.ac.kr/admission/html/main/main.asp", majors: ["컴퓨터공학과", "경영학과"] },
+      { name: "가톨릭대학교", logo: "./images/가톨릭대로고.png", url: "https://ipsi.catholic.ac.kr/main.do", majors: ["글로벌미래경영학과", "세무회계금융학과","IT파이낸스학과"] },
+      { name: "건국대학교", logo: "./images/건국대로고.png", url: "https://enter.konkuk.ac.kr/main.do", majors: ["신산업융합학과", "K뷰티산업융합학과"] },
+      { name: "인하대학교", logo: "./images/인하대로고.png", url: "https://admission.inha.ac.kr/intro.do", majors: ["메카트로닉스공학과", "소프트웨어융합공학과","산업경영학과","금융투자학과","반도체산업융합학과"] },
+      { name: "성균관대학교", logo: "./images/성균관대로고.jpg", url: "https://admission.skku.edu/admission/html/main/main.html", majors: ["응용AI융합학부"] },
+      { name: "경희대학교", logo: "./images/경희대로고.png", url: "https://iphak.khu.ac.kr/main.do", majors: ["국제통상·금융투자학부", "문화관광산업학과","조리산업학과"] },
+      { name: "과학기술대학교", logo: "./images/과기대로고.png", url: "https://admission.seoultech.ac.kr/index.do", majors: ["융합기계공학과", "건설환경융합공학과","정보통신융합공학과","정보통신융합공학과","헬스피트니스학과","문화예술학과","영어과","벤처경영학과"] },
+      { name: "광운대학교", logo: "./images/광운대로고.png", url: "https://iphak.kw.ac.kr/intro.php", majors: ["금융부동산법무학과", "게임콘텐츠학과","스마트전기전자학과","스포츠상담재활학과"] },
+      { name: "국민대학교", logo: "./images/국민대로고.png", url: "https://admission.kookmin.ac.kr/main.php", majors: ["기업융합학과", "기업경영학부"] },
+      { name: "단국대학교", logo: "./images/단국대로고.png", url: "https://ipsi.dankook.ac.kr/intro.html", majors: ["산업경영학과"] },
+      { name: "동국대학교", logo: "./images/동국대로고.png", url: "https://ipsi.dongguk.edu/admission/html/main/main.asp", majors: ["융합보안학과", "사회복지상담학과","글로벌무역학과"] },
+      { name: "동덕여자대학교", logo: "./images/동덕여대로고.png", url: "https://ipsi.dongduk.ac.kr/web/index.do", majors: ["미래인재융합대학"] },
+      { name: "명지대학교", logo: "./images/명지대로고.png", url: "https://iphak.mju.ac.kr/main/index.php", majors: ["창의융합인재학부", "사회복지학과","부동산학과","법무행정학과","심리치료학과","미래융합경영학과","회계세무학과","멀티디자인학과"] },
+      { name: "상명대학교", logo: "./images/상명대로고.png", url: "https://admission.smu.ac.kr/iphak_home.html", majors: ["융합경영학과"] },
+      { name: "서경대학교", logo: "./images/서경대로고.png", url: "https://go.skuniv.ac.kr/#main", majors: ["경영학부", "헤어디자인학과","광고홍보영상학과"] },
+      { name: "성신여자대학교", logo: "./images/성신여대로고.png", url: "https://ipsi.sungshin.ac.kr/main.htm", majors: ["경영학부"] },
+      { name: "세종대학교", logo: "./images/세종대로고.png", url: "https://ipsi.sejong.ac.kr/", majors: ["호텔외식관광프랜차이즈경영학과", "글로벌조리학과"] },
+      { name: "숙명여자대학교", logo: "./images/숙명여대로고.png", url: "https://admission.sookmyung.ac.kr/admission/html/main/main.asp", majors: ["문헌정보학과", "소비자경제학과","경영학부","앙트러프러너십전공"] },
+      { name: "숭실대학교", logo: "./images/숭실대로고.png", url: "https://iphak.ssu.ac.kr/", majors: ["금융경제학과", "국제무역학과","미디어경영학과"] },
+      { name: "아주대학교", logo: "./images/아주대로고.png", url: "https://www.iajou.ac.kr/main/", majors: ["융합시스템공학과", "글로벌경영학과"] },
+      { name: "전북대학교", logo: "./images/전북대로고.png", url: "https://enter.jbnu.ac.kr/main.do", majors: ["소프트웨어공학과", "융합기술공학부","산림환경과학과","생명자원융합학과"] },
+      { name: "중앙대학교", logo: "./images/중앙대로고.png", url: "https://admission.cau.ac.kr/main.do", majors: ["지식경영학부"] },
+      { name: "충남대학교", logo: "./images/충남대로고.png", url: "https://ipsi.cnu.ac.kr/html/uadm/", majors: ["리더십과조직과학전공"] },
+      { name: "충북대학교", logo: "./images/충북대로고.png", url: "https://ipsi.chungbuk.ac.kr/kor.do", majors: ["컴퓨터공학과", "지역건설공학과농촌관광개발"] },
+      { name: "한국공학대학교", logo: "./images/한국공학대로고.png", url: "https://iphak.tukorea.ac.kr/main.htm", majors: ["산업융합공학과", "디지털경영학과"] },
+      { name: "한성대학교", logo: "./images/한성대로고.png", url: "https://enter.hansung.ac.kr/?m1=home", majors: ["융합행정학과", "호텔외식경영학과","뷰티디자인학과","비즈니스컨설팅학과","ICT융합디자인학과","미래인재학부"] },
+      { name: "한양대학교", logo: "./images/한양대로고.png", url: "https://go.hanyang.ac.kr/gate.do", majors: ["산업융합학부"] },
+      { name: "한양대학교ERICA", logo: "./images/한양대에리카로고.png", url: "http://goerica.hanyang.ac.kr/intro.asp", majors: ["융합공학과", "회계세무학과"] },
+      { name: "홍익대학교", logo: "./images/홍익대로고.png", url: "https://www.hongik.ac.kr/kr/admission/undergraduate-admission.do", majors: ["디자인·예술경영학부"] },
+      { name: "강원대학교", logo: "./images/강원대로고.png", url: "https://wwwk.kangwon.ac.kr/admission/main.do", majors: ["스마트팜농산업학과"] },
+      { name: "서울여자대학교", logo: "./images/서울여자대.jpg", url: "https://admission.swu.ac.kr/main.php", majors: ["총 23명 모집"] },
+      { name: "덕성여자대학교", logo: "./images/덕성여자대.png", url: "https://enter.duksung.ac.kr/main.php", majors: ["과학기술대학"] }
+    ];
+
+    const universityList = document.getElementById('university-list');
+
+    function displayUniversities(filteredUniversities) {
+      universityList.innerHTML = '';
+      filteredUniversities.forEach(uni => {
+        const article = document.createElement('article');
+        article.classList.add('html-css', '_html');
+
+        const figure = document.createElement('figure');
+        figure.classList.add('html-css__thumb');
+
+        const a = document.createElement('a');
+        a.href = uni.url;
+
+        const img = document.createElement('img');
+        img.classList.add('html-css__logo');
+        img.src = uni.logo;
+        img.alt = `${uni.name} 로고`;
+
+        a.appendChild(img);
+        figure.appendChild(a);
+
+        const p = document.createElement('p');
+        p.textContent = uni.name;
+
+        // Majors list
+        const majorsList = document.createElement('ul');
+        majorsList.classList.add('majors-list');
+        uni.majors.forEach(major => {
+          const majorItem = document.createElement('li');
+          majorItem.textContent = major;
+          majorsList.appendChild(majorItem);
+        });
+
+        article.appendChild(figure);
+        article.appendChild(p);
+        article.appendChild(majorsList);
+
+        universityList.appendChild(article);
+      });
+    }
+
+    document.getElementById('search-input').addEventListener('input', function(event) {
+      const query = event.target.value.toLowerCase();
+      const filteredUniversities = universities.filter(uni => uni.name.toLowerCase().includes(query));
+      displayUniversities(filteredUniversities);
+    });
+
+    // 초기 목록 표시
+    displayUniversities(universities);
+  </script>
+</body>
+</html>
